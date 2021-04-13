@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>modal</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function(){
+            // 이거해라
+
+            $(".btn").click(function(){
+                $('.popup_bg').css({'display':'block'});
+            });
+
+            $('.popup_bg').click(function(){
+                // $('.popup_bg').css({'display':'none'});
+                $(this).css({'display':'none'});
+
+//                 초기상태가 inline태그였다면 display:inline
+// flex의 경우는 display:flex로 원래대로 해줘야함
+            })
+        });
+    </script>
+    <style>
+        button{
+            width: 100px;
+            height:50px;
+            background-color: pink;
+        }
+        .popup_bg{
+            display: none;
+            position: absolute;
+            top:0;
+            left:0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+        .popup{
+            width: 300px;
+            height: 500px;
+            background: #fff;
+
+            position: absolute;
+
+            /* 정중앙에딱맞추기위해 편법사용 300의 반, 500의 반 */
+            left: calc(50% - 150px);
+            top:calc(50% - 250px);
+        }
+    </style>
+</head>
+<body>
+    <button class="btn">hi</button>
+
+    <div class="popup_bg">
+        <div class="popup"></div>
+    </div>
+</body>
+</html>

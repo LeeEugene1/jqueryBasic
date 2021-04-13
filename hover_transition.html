@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>modal</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function(){
+            $(".btn").hover(function(){
+                $(this).css({
+                    'background':'red',
+                    'transition':'0.7s'
+                });
+            },function(){
+                $(this).css({
+                    'background':'pink',
+                    'transition':'0.7s'
+                });
+            });
+            // .btn과 this의 차이:.btn일경우 하나의메뉴만 호버해도 전체가 바뀌기때문에
+            // 개별선택된다는 의미의 this를 사용해줘야한다
+
+            // css Animation 을 검색한다
+        });
+    </script>
+    <style>
+        .btn{
+            width: 100px;
+            height:50px;
+            background-color: pink;
+            line-height: 40px;
+            color: #fff;
+            text-align: center;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="btn">menu1</div>
+    <div class="btn">menu2</div>
+    <div class="btn">menu3</div>
+    <div class="btn">menu4</div>
+
+</body>
+</html>
