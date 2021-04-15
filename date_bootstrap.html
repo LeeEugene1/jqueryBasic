@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./static/css/default.css">
+    <link rel="stylesheet" href="./static/css/style.css">
+    <link rel="stylesheet" href="./static/css/bootstrap_nomalize.css">
+    <!-- jquery -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
+    <!-- google chart -->
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <!-- bootstrap -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.1/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/js/bootstrap-datetimepicker.min.js"></script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/css/bootstrap-datetimepicker.min.css">
+    <title>방문이력조회</title>
+    <script>
+        
+    </script>
+    <!-- chart -->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+    // 구글에서 지원하는 Dual-Y charts 입니다.
+        $(window).resize(function(){
+            drawChart();
+        });
+
+      google.charts.load('current', {'packages':['bar']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['', '방문자수', 'QR조회수'],
+          ['04.14', 1000, 400],
+          ['04.15', 1170, 460],
+          ['04.16', 660, 1120],
+          ['04.17', 1030, 540]
+        ]);
+
+        var options = {
+          chart: {
+            title: '',
+            subtitle: '',
+            
+        },
+        height: 250,
+          title: '',
+          colors: ['#5ac7b2', '#d5d8da'],
+          legend: { position: 'none', alignment: 'end' },
+        };
+
+        var chart = new google.charts.Bar(document.getElementById('columnchart_material'));
+
+        chart.draw(data, google.charts.Bar.convertOptions(options));
+      }
+    </script>
+</head>
+<body>
+    
+
+    <div id="wrap">
+        <!-- header -->
+        <div id="header">
+            <header class="icon_right">
+                <!-- arrow, title -->
+                <div class="icon_left">
+                    <i class="xi-arrow-left"></i>
+                    <span>방문이력조회</span>
+                </div>
+                <i class="xi-bars"></i>
+            </header>
+            <footer>
+                <span>방문이력조회</span>
+            </footer>
+        </div>
+
+        <!-- nav -->
+        <div class="dark_background"></div>
+        <nav class="nav_menu">
+            <ul class="nav_menu_items">
+                <li class="navbar_toggle">
+                    <a class="menu_bars" href="/">
+                        <i class="xi-close"></i>
+                    </a>
+                </li>
+                <li class="nav_text">
+                    <a href="">
+                        <span>방문이력조회</span>
+                    </a>
+                </li>
+                <li class="nav_text">
+                    <a href="">
+                        <span>회원정보 수정</span>
+                    </a>
+                </li>
+                <li class="nav_text">
+                    <a href="">
+                        <span>QR CODE관리</span>
+                    </a>
+                </li>
+                <li class="nav_text">
+                    <a href="">
+                        <span>문의하기</span>
+                    </a>
+                </li>
+                <li style="display:none;" class="nav_text">
+                    <a href="">
+                        <span>로그아웃</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- main -->
+        <div id="container">
+            <div class="tab_wrap">
+                <div class="tab">
+                    <button class="tablinks" onclick="visit_history(event, 'Today')" id="defaultOpen">당일목록</button>
+                    <button class="tablinks" onclick="visit_history(event, 'Day')">일</button>
+                    <button class="tablinks" onclick="visit_history(event, 'Week')">주</button>
+                    <button class="tablinks" onclick="visit_history(event, 'Month')">월</button>
+                </div>
+
+                  
+                <!-- tab_chart -->
+                  <div id="Today" class="tabcontent" style="min-width: 250px; height: 450px;">
+                      <div class="tab_search">
+                        <i class="xi-angle-left"></i>
+                        
+                <!-- datepicker bootstrap -->
+                <div class="container">
+                    <div class='col-md-5'>
+                       <div class="form-group">
+                          <div class='input-group date' id='datetimepicker6'>
+                             <input type='text' class="form-control" />
+                             <span class="input-group-addon">
+                             <span class="glyphicon glyphicon-calendar"></span>
+                             </span>
+                          </div>
+                       </div>
+                    </div>
+                    <div class='col-md-5'>
+                       <div class="form-group">
+                          <div class='input-group date' id='datetimepicker7'>
+                             <input type='text' class="form-control" />
+                             <span class="input-group-addon">
+                             <span class="glyphicon glyphicon-calendar"></span>
+                             </span>
+                          </div>
+                       </div>
+                    </div>
+                 </div>
+
+                        <i class="xi-angle-right"></i>
+                        <i class="xi-search"></i>
+                      </div>
+                      <div class="tab_chart">
+                        <div id="columnchart_material"></div>
+                      </div>
+                      <div class="tab_download"></div>
+                  </div>
+
+
+
+                  
+                  <div id="Day" class="tabcontent">
+                    <h3>일</h3>
+                    <p>Paris is the capital of France.</p> 
+                  </div>
+                  
+                  <div id="Week" class="tabcontent">
+                    <h3>주</h3>
+                    <p>Tokyo is the capital of Japan.</p>
+                  </div>
+
+                  <div id="Month" class="tabcontent">
+                    <h3>월</h3>
+                    <p>Tokyo is the capital of Japan.</p>
+                  </div>
+
+                <!-- tab_chart_download -->
+                <div class="tab_chart_download">
+                    <i class="xi-arrow-bottom"></i>
+                    <span>방문이력 다운받기</span>
+                </div>
+
+            </div>
+        </div>
+        
+        <!-- footer -->
+        <div id="footer"></div>
+    </div>
+    <script src="./static/js/nav.js"></script>
+    <script src="./static/js/tab_menu.js"></script>
+    <!-- bootstrap -->
+    <script type="text/javascript">
+
+        $(function () {
+            $('#datetimepicker6').datetimepicker();
+            $('#datetimepicker7').datetimepicker({
+        useCurrent: false //Important! See issue #1075
+        });
+            $("#datetimepicker6").on("dp.change", function (e) {
+                $('#datetimepicker7').data("DateTimePicker").minDate(e.date);
+            });
+            $("#datetimepicker7").on("dp.change", function (e) {
+                $('#datetimepicker6').data("DateTimePicker").maxDate(e.date);
+            });
+        });
+     </script>
+</body>
+</html>
