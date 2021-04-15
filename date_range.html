@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Html5 date range custom jQuery</title>
+    <style>
+        *{
+            box-sizing: border-box;
+        }
+        .container{
+            display: flex;
+        }
+
+        input{
+            /* width: ; */
+            padding:10px 15px;
+            font-size: 18px;
+        }
+       
+
+        /* input[type="date"]::-webkit-calendar-picker-indicator {
+        background: transparent;
+        bottom: 0;
+        color: transparent;
+        cursor: pointer;
+        height: auto;
+        left: 0;
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: auto;
+    } */
+    </style>
+</head>
+<body>
+    <div class="container">
+        <label for="">
+            from
+        </label>
+        <input type="date" name="" max="" id="fromDate">
+        <br>
+        <label for="">
+            to
+        </label>
+        <input type="date" name="" max="" id="toDate"></div>
+
+
+    </div>
+        <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script>
+        var fromDate;
+        $('#fromDate').on('change', function(){
+            fromDate = $(this).val();
+            $('#toDate').prop('min', function(){
+                return fromDate;
+            })
+        });
+
+        var toDate;  
+        $('#toDate').on('change', function(){
+            toDate = $(this).val();
+            $('#fromDate').prop('min', function(){
+                return toDate;
+            })
+        });
+
+    </script>
+</body>
+</html>
