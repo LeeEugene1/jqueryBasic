@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        var arr=[11110,11140,21110,21140,30110,30140];
+        // 전부다출력하기
+        // $.each(arr, function(index, value){
+        //     // console.log(index + ":" + value)
+        //     alert(value);
+        // })
+
+        // index 1,2,3까지만 출력하기
+        // $.each(arr, function (index, value) {
+        //         // console.log(index + ":" + value)
+        //         if(index <3){
+        //             alert(value);
+        //             false;
+        //         }
+        // })
+
+        // value 30대만 출력하기
+        $.each(arr, function(index, value){
+            // if(value.substr(0,3) == 30){
+            //     alert(value);
+            //     false;
+            // }
+            // console.log(value.toString().substr(0,2))
+            
+            // if(value.toString().substr(0,2)==30){
+            //     alert(value);
+            //     false;
+            // }
+            
+            if (value.toString().substr(0, 2) == 21) {
+                return alert(value);
+            }
+        }
+        )
+
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
