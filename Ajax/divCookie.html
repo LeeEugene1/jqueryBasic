@@ -1,0 +1,66 @@
+<html>
+
+<head>
+    <meta charset='UTF-8' />
+    <script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
+</head>
+
+<body> 시간선택하면 쿠키에 저장되는 기능 
+    <div id="interval_time" name='interval_time'>
+        <div value='3'>3초</div>
+        <div value='10'>10초</div>
+        <div value='30'>30초</div>
+        <div value='60'>1분</div>
+        <div value='300'>300분</div>
+    </select>
+    <p>롤링타임: <time>00</time></p>
+</body>
+<script>
+
+    var _rolling_interval = 10;
+    $(document).ready(function () {
+
+        function setCookie(cName, cValue, expiredays) {
+            var today = new Date();
+            today.setDate(today.getDate() + expiredays);
+            document.cookie = cName + "=" + escape(cValue) + "; path=/; expires=" + today.toGMTString() + ";"
+        }
+
+        function getCookie() {
+            // userid 쿠키에서 id 값을 가져온다. 
+            var cook = document.cookie + ";";
+            var key = 'hcn_total_dashbd';
+            var idx = cook.indexOf(key, 0);
+            var val = "";
+
+            if (idx != -1) {
+                cook = cook.substring(idx, cook.length);
+                begin = cook.indexOf("=", 0) + 1;
+                end = cook.indexOf(";", begin);
+                val = unescape(cook.substring(begin, end));
+            }
+
+            // 가져온 쿠키값이 있으면 
+            if (val != "") {
+                $("#interval_time").val(val);
+                _rolling_interval = val;
+            } else {
+                $("#interval_time").val(_rolling_interval);
+            }
+        }
+        getCookie();
+
+        $("#interval_time").change(function (e) {
+            var _rolling_interval = $(this).val();
+            setCookie("hcn_total_dashbd", _rolling_interval, 7);
+            $("time").text(_rolling_interval);
+        });
+
+        $("time").text(_rolling_interval);
+    });
+
+</script>
+
+</html>
+
+// 출처: https://serpiko.tistory.com/602 [삽SAP(Study And Programming) 질 블로그. by허정진]

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <title>Document</title>
+</head>
+<script>
+    $(document).ready(function(){
+        $('button').click(function(){
+        // 1. load
+            // $('#div1').load("test.txt")
+
+            // $.ajax({url:"test.txt", success:function(result){
+            //     $("#div1").html(result);
+            // }})
+
+            // $('button').click(function(){
+            //     $('#div1').load('test.txt', function(responseTxt, statusTxt, xhr){
+            //         if(statusTxt == "success")
+            //             alert('external content loaded sucessfully')
+            //         if(statusTxt == "error")
+            //             alert('Error'+xhr.status + ": " + xhr.statusTxt)
+            //         })
+            // })
+
+        // 2. get(http request)
+                // $(document).ready(function(){
+                //     $('button').click(function(){
+                //         $.get("test.txt", function(data, status){
+                //             alert("data: "+data+"/nStatus: "+status)
+                //         })
+                //     })
+                // })
+
+                // $.get("test.txt", function(){
+
+                // })
+                // var obj = jQuery.parseJSON('test.txt');
+                // alert(obj)
+
+        // 3. getJason
+            //     $.getJSON('data.json', function(data){
+            //         console.log(data);
+            //         console.log(data.person[0])
+            //     });
+            // });
+
+        //3-1 getJason - more control
+            $.ajax({
+                url : 'data.json',
+                dataType: 'json',
+                type:'get',
+                cache:false, //캐시데이타
+                success: function(data){
+                    // console.log(data)
+                    $(data.person).each(function(index, value){
+                        // console.log(value.age) //개별 나이만 출력해줌
+                        // $('#div1').append(value.age) //1656
+                        // $('#div1').append(value.age[0] + ', ' + value.age[1])
+                        $('#div1').append('<p>'+value.age+'</p>')
+                    })
+                }
+             });
+            });
+    });
+</script>
+<body>
+    <!--  json이란 네트워크를 통해 데이터를 주고받는 데 자주 사용되는 경량의 데이터 형식 -->
+    <!-- parsing은 json 형태로 온 데이터들을 뽑아낸다 -->
+    <!-- <select id="">
+        <option value="">Volvo</option>
+      </select> -->
+      <div id="div1">blabla</div>
+      <button id="button">click here</button>
+</body>
+</html>

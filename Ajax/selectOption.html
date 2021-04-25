@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>(ajax추가)1번셀렉트박스의 값을 선택할때마다 2번셀렉트박스의 선택옵션의 내용이 바뀌도록.</title>
+    <script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+</head>
+<body>
+    <select name="" id="select1" onchange="itemChange()">
+        <!-- value를채워줘야 제이쿼리에서 val()로 받을수있음!!!!!! -->
+        <option value="키보드">키보드</option>
+        <option value="마우스">마우스</option>
+    </select>
+    <select name="" id="select2">
+        <option></option>
+    </select>
+    <script>
+                    $.ajax({
+                            url: 'data.json',
+                            dataType: 'json',
+                            type: 'get',
+                            cache: false, //캐시데이타
+                            success: function (data) {
+                                // console.log(data)
+                                $(data.person).each(function (index, value) {
+                                    // console.log(value.age) //개별 나이만 출력해줌
+                                    // $('#div1').append(value.age) //1656
+                                    // $('#div1').append(value.age[0] + ', ' + value.age[1])
+                                    $('#div1').append('<p>' + value.age + '</p>')
+                                })
+                            }
+                        });
+                    
+    </script>
+
+    <script>
+        function itemChange() {
+            var keyboard = ['갈축', '청축', '적축'];
+            var mouse = ['광마우스', '유선마우스', '미키마우스'];
+
+            var selectItem = $("#select1").val();
+            var changeItem = [];
+
+            if (selectItem == "키보드") {
+                changeItem = keyboard;
+            }
+            else if (selectItem == "마우스") {
+                changeItem = mouse;
+            }
+
+            $('#select2').empty();
+
+            // changeItem.size()는뭐지????
+            for (var count = 0; count < changeItem.length; count++) {
+                var option = $("<option>" + changeItem[count] + "</option>");
+                $('#select2').append(option);
+            }
+
+        }
+    </script>
+    </script>
+    <div id="div1"></div>
+
+</body>
+</html>

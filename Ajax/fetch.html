@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <title>Document</title>
+</head>
+<script>
+    function loadItems(){
+        // 데이터를 네트워크를 통해 받아오기
+        return fetch('data.json')
+        .then(response => console.log(response));
+    }
+
+    // loadItems()
+
+    //data.json 파일을 동적으로 읽어와 아이템전달
+    loadItems().then(item =>{
+        displayItems(items);
+        setEventListeners(items)
+    }).catch(console.log)
+</script>
+<body>
+    <!--  json이란 네트워크를 통해 데이터를 주고받는 데 자주 사용되는 경량의 데이터 형식 -->
+    <!-- parsing은 json 형태로 온 데이터들을 뽑아낸다 -->
+    <!-- <select id="">
+        <option value="">Volvo</option>
+      </select> -->
+      <div id="div1">blabla</div>
+      <button id="button">click here</button>
+</body>
+</html>
