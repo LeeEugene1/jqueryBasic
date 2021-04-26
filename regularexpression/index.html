@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+            crossorigin="anonymous"></script>
+
+    <title>validation check</title>
+</head>
+<script>
+    $(document).ready(function(){
+        $("#btnclick").click(function(){
+            // alert('hi')
+            //input반드시 val()입력해줘야함
+
+            var box = $('#box').val();
+            var mob = $('#mobile').val()
+            // var mobRex = /[~!@#$%^&*()_+|<>?:{}]/;
+            var mobRex = /^[0-9]{11}$/;
+
+            // trim은 공백제거해줌
+            if($.trim(box) == ''){
+                alert('값입력')
+                return;//밑의내용은 실행되지않는다.
+            }
+            // if (mobRex.test(mob)) {
+            //     alert('올바른번호를입력하세요')
+            //     return;
+            // }
+            //  if ($.trim(mob) == '') {
+            //     alert('번호입력')
+            //     return;
+            // }
+            if($.trim(mob) == '' || !mobRex.test($.trim(mob))){
+                alert('번호다시입력')
+                return;
+            }
+            // 번호는 11자, 특수문자x, 숫자만
+            // test는 Boolean을 리턴한다.
+
+            if($('#ch1').prop('checked') == '' || $('#ch2').prop('checked') == ''){
+                alert('체크박스 모두 표시')
+                return;
+            }
+
+            // var checked = false;
+            // $('input:checkbox').each(function () {
+            //     if ($(this).prop('checked')) {
+            //         checked = true;
+            //         break;
+            //     }
+            // });
+
+            // if (!checked) alert('Please Check At least one record to print cheque!!!')
+        })
+    })
+</script>
+<body>
+    <form method="get" action="#">
+        이름
+        <input type="text" id="box">
+        번호
+        <input type="number" id="mobile">
+        체크박스
+        <label for="">
+            <input type="checkbox" name="color" value="blue" id="ch1">
+        </label>
+        <label for="">
+            <input type="checkbox" name="color" value="red" id="ch2">
+        </label>
+        <!-- name은 전달할값 value는 전달될 값 checked는 알지 -->
+        
+        <input type="button"  id="btnclick" value="버튼">
+        <!-- <button>태그쓰지말것</button> 이전값 초기화되버림 -->
+    </form>
+</body>
+</html>

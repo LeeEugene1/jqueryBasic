@@ -1,7 +1,7 @@
 {
     "addr1":[
         { "addr_no":11000,"addr_name":"서울특별시"},
-        { "addr_no":12000,"addr_name":"대전광역시"},
-        { "addr_no":13000,"addr_name":"부산광역시"}
+        { "addr_no":21000,"addr_name":"부산광역시"},
+        { "addr_no":30000,"addr_name":"대전광역시"}
     ]
 }

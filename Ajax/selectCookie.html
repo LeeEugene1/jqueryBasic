@@ -6,6 +6,7 @@
 </head>
 
 <body> 시간선택하면 쿠키에 저장되는 기능 
+                    
     <select id="interval_time" name='interval_time'>
         <option value='3'>3초</option>
         <option value='10'>10초</option>
@@ -14,16 +15,27 @@
         <option value='300'>5분</option>
     </select>
     <p>롤링타임: <time>00</time></p>
+
+        <select id="interval_time2" name='interval_time2'>
+            <option value='3'>3초</option>
+            <option value='10'>10초</option>
+            <option value='30'>30초</option>
+            <option value='60'>1분</option>
+            <option value='300'>5분</option>
+        </select>
+        <p>롤링타임: <time2>00</time2></p>
 </body>
     <script> 
     
     var _rolling_interval = 10; 
+    var first = 10;
     $(document).ready(function () { 
       
-        function setCookie(cName, cValue, expiredays) { 
-          var today = new Date(); 
-          today.setDate(today.getDate() + expiredays);
-          document.cookie = cName + "=" + escape(cValue) + "; path=/; expires=" + today.toGMTString() + ";"
+        function setCookie(cookieName, value, exdays) {
+            var exdate = new Date();
+            exdate.setDate(exdate.getDate() + exdays);
+            var cookieValue = escape(value) + ((exdays == null) ? "" : "; expires=" + exdate.toGMTString());
+            document.cookie = cookieName + "=" + cookieValue;
         }
     
         function getCookie() {
@@ -32,12 +44,15 @@
             var key = 'hcn_total_dashbd';
             var idx = cook.indexOf(key, 0);
             var val = "";
+            var val2 = "";
 
             if (idx != -1) {
                 cook = cook.substring(idx, cook.length);
                 begin = cook.indexOf("=", 0) + 1;
                 end = cook.indexOf(";", begin);
                 val = unescape(cook.substring(begin, end));
+                val2 = unescape(cook.substring(begin, end));
+
             }
 
             // 가져온 쿠키값이 있으면 
@@ -46,6 +61,15 @@
                 _rolling_interval = val;
             } else {
                 $("#interval_time").val(_rolling_interval);
+
+            }
+
+            if (val2 != "") {
+                $("#interval_time2").val(val2);
+                first = val2;
+            } else {
+                $("#interval_time2").val(first);
+
             }
         }
         getCookie(); 
@@ -55,8 +79,16 @@
              setCookie("hcn_total_dashbd", _rolling_interval, 7); 
              $("time").text( _rolling_interval ); 
         }); 
+
+        $("time").text(_rolling_interval);
         
-        $("time").text( _rolling_interval );
+                $("#interval_time2").change(function (e) {
+            var first = $(this).val();
+            setCookie("hcn_total_dashbd", first, 7);
+            $("time2").text(first);
+        });
+        
+        $("time2").text( first );
     });
 
 </script>

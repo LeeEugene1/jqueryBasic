@@ -1,6 +1,11 @@
 {
     "addr2":[
-        { "addr_no":11110,"addr_name":"종로구"},
-        { "addr_no":11140,"addr_name":"중구"}
+        { "addr_no":11110,"addr_name":"(서울)종로구"},
+        { "addr_no":11140,"addr_name":"(서울)중구"},
+        { "addr_no":21110,"addr_name":"(부산)중구"},
+        { "addr_no":21140,"addr_name":"(부산)서구"},
+        { "addr_no":30110,"addr_name":"(대전)동구"},
+        { "addr_no":30140,"addr_name":"(대전)중구"}
+
     ]
 }

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>(ajax추가+cookiesave)1번셀렉트박스의 값을 선택할때마다 2번셀렉트박스의 선택옵션의 내용이 바뀌도록.</title>
+    <script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+        <!-- <select id="div1"></select> -->
+
+        <div>
+            <select name="" id="interval_time">
+            </select>
+
+        </div>
+        <!-- <option value="1" disabled="disabled">선택</option> -->
+        <!-- value를채워줘야 제이쿼리에서 val()로 받을수있음!!!!!! -->
+        <!-- <option value="키보드">키보드</option>
+        <option value="마우스">마우스</option> -->
+        <div>
+            <select name="" id="select2">
+                <!-- <option value="1" disabled="disabled">선택</option> -->
+            </select>
+
+        </div>
+        <button>새로고침쿠키저장</button>
+    <!-- <select name="" id="test">
+    </select> -->
+    <!-- <script src="./selectOption.js"></script> -->
+    
+    
+    <script>
+        var selectBox1 = $.ajax({
+            url: '../addr1.json',
+            dataType: 'json',
+            type: 'get',
+            cache: false, //캐시데이타
+            success: function (data) {
+                $(data.addr1).each(function (index, value) {
+                    $('#interval_time').append('<option value="' + value.addr_no + '">' + value.addr_name + '</option>')
+                })
+            }
+        });
+
+        var selectBox2 = $.ajax({
+                url: '../addr2.json',
+                dataType: 'json',
+                type: 'get',
+                cache: false, //캐시데이타
+                success: function (data) {
+                    $(data.addr2).each(function (index, value) {
+                        var selectItem = $('#interval_time').val();
+
+                        if (selectItem.substr(0, 2) == 11) {
+                            if (value.addr_no.toString().substr(0, 2) == 11) {
+                                return $('#select2').append('<option value="' + value.addr_no + '">' + value.addr_name + '</option>')
+                            }
+                        }
+                        else if (selectItem.substr(0, 2) == 21) {
+                            if (value.addr_no.toString().substr(0, 2) == 21) {
+                                return $('#select2').append('<option value="' + value.addr_no + '">' + value.addr_name + '</option>')
+                            }
+                        }
+                        else if (selectItem.substr(0, 2) == 30) {
+                            if (value.addr_no.toString().substr(0, 2) == 30) {
+                                return $('#select2').append('<option value="' + value.addr_no + '">' + value.addr_name + '</option>')
+                            }
+                        }
+                    })
+
+                }
+            });
+            $('#select2').empty();
+
+        $("#interval_time").click(function(){
+            selectBox2 = $.ajax({
+                url: '../addr2.json',
+                dataType: 'json',
+                type: 'get',
+                cache: false, //캐시데이타
+                success: function (data) {
+                    $(data.addr2).each(function (index, value) {
+                        var selectItem = $('#interval_time').val();
+
+                        if(selectItem.substr(0,2) == 11){
+                            if(value.addr_no.toString().substr(0, 2)==11){
+                                return $('#select2').append('<option value="' + value.addr_no + '">' + value.addr_name + '</option>')
+                            }
+                        }
+                        else if(selectItem.substr(0, 2) == 21){
+                            if (value.addr_no.toString().substr(0, 2) == 21) {
+                                return $('#select2').append('<option value="' + value.addr_no + '">' + value.addr_name + '</option>')
+                            }
+                        }
+                        else if(selectItem.substr(0,2) == 30){
+                            if(value.addr_no.toString().substr(0, 2)==30){
+                                return $('#select2').append('<option value="' + value.addr_no + '">' + value.addr_name + '</option>')
+                            }
+                        }
+                    })
+
+                }
+            });
+            $('#select2').empty();
+        })
+    </script>
+        <script>
+
+            var _rolling_interval = 10;
+            $(document).ready(function () {
+
+                function setCookie(cName, cValue, expiredays) {
+                    var today = new Date();
+                    today.setDate(today.getDate() + expiredays);
+                    document.cookie = cName + "=" + escape(cValue) + "; path=/; expires=" + today.toGMTString() + ";"
+                }
+
+                function getCookie() {
+                    // userid 쿠키에서 id 값을 가져온다. 
+                    var cook = document.cookie + ";";
+                    var key = 'hcn_total_dashbd';
+                    var idx = cook.indexOf(key, 0);
+                    var val = "";
+
+                    if (idx != -1) {
+                        cook = cook.substring(idx, cook.length);
+                        begin = cook.indexOf("=", 0) + 1;
+                        end = cook.indexOf(";", begin);
+                        val = unescape(cook.substring(begin, end));
+                    }
+
+                    // 가져온 쿠키값이 있으면 
+                    if (val != "") {
+                        $("#interval_time").val(val);
+                        _rolling_interval = val;
+                    } else {
+                        $("#interval_time").val(_rolling_interval);
+                    }
+                }
+                getCookie();
+
+                $("#interval_time").change(function (e) {
+                    var _rolling_interval = $(this).val();
+                    setCookie("hcn_total_dashbd", _rolling_interval, 7);
+                    $("time").text(_rolling_interval);
+                });
+
+                $("time").text(_rolling_interval);
+            });
+
+        </script>
+
+</body>
+</html>

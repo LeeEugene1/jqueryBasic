@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>(ajax추가+cookiesave)1번셀렉트박스의 값을 선택할때마다 2번셀렉트박스의 선택옵션의 내용이 바뀌도록.</title>
+    <script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+        <!-- <select id="div1"></select> -->
+<!-- <select id="interval_time" name=''>
+    <option value='3'>3초</option>
+    <option value='10'>10초</option>
+    <option value='30'>30초</option>
+    <option value='60'>1분</option>
+    <option value='300'>5분</option>
+</select>
+<p>롤링타임: <time>00</time></p> -->
+        <div>
+            <select name="" id="select1">
+            </select>
+        </div>
+        <!-- <option value="1" disabled="disabled">선택</option> -->
+        <!-- value를채워줘야 제이쿼리에서 val()로 받을수있음!!!!!! -->
+        <!-- <option value="키보드">키보드</option>
+        <option value="마우스">마우스</option> -->
+        <div>
+            <select name="" id="select2">
+                <option value="123">선택</option>
+            </select>
+        </div>
+        <button id="submit_Button">새로고침쿠키저장</button>
+    <!-- <select name="" id="test">
+    </select> -->
+    <!-- <script src="./selectOption.js"></script> -->
+    
+    
+    <script>
+        var selectBox1 = $.ajax({
+            url: '../addr1.json',
+            dataType: 'json',
+            type: 'get',
+            cache: false, //캐시데이타
+            success: function (data) {
+                $(data.addr1).each(function (index, value) {
+                    $('#select1').append('<option value="' + value.addr_no + '">' + value.addr_name + '</option>')
+                })
+            }
+        });
+
+        // var selectBox2 = $.ajax({
+        //         url: '../addr2.json',
+        //         dataType: 'json',
+        //         type: 'get',
+        //         cache: false, //캐시데이타
+        //         success: function (data) {
+        //             $(data.addr2).each(function (index, value) {
+        //                 var selectItem = $('#select1').val();
+
+        //                 if (selectItem.substr(0, 2) == 11) {
+        //                     if (value.addr_no.toString().substr(0, 2) == 11) {
+        //                         return $('#select2').append('<option value="' + value.addr_no + '">' + value.addr_name + '</option>')
+        //                     }
+        //                 }
+        //                 else if (selectItem.substr(0, 2) == 21) {
+        //                     if (value.addr_no.toString().substr(0, 2) == 21) {
+        //                         return $('#select2').append('<option value="' + value.addr_no + '">' + value.addr_name + '</option>')
+        //                     }
+        //                 }
+        //                 else if (selectItem.substr(0, 2) == 30) {
+        //                     if (value.addr_no.toString().substr(0, 2) == 30) {
+        //                         return $('#select2').append('<option value="' + value.addr_no + '">' + value.addr_name + '</option>')
+        //                     }
+        //                 }
+        //             })
+
+        //         }
+        //     });
+        //     $('#select2').empty();
+
+        $("#select1").click(function(){
+            selectBox2 = $.ajax({
+                url: '../addr2.json',
+                dataType: 'json',
+                type: 'get',
+                cache: false, //캐시데이타
+                success: function (data) {
+                    $(data.addr2).each(function (index, value) {
+                        var selectItem = $('#select1').val();
+
+                        if(selectItem.substr(0,2) == 11){
+                            if(value.addr_no.toString().substr(0, 2)==11){
+                                return $('#select2').append('<option value="' + value.addr_no + '">' + value.addr_name + '</option>')
+                            }
+                        }
+                        else if(selectItem.substr(0, 2) == 21){
+                            if (value.addr_no.toString().substr(0, 2) == 21) {
+                                return $('#select2').append('<option value="' + value.addr_no + '">' + value.addr_name + '</option>')
+                            }
+                        }
+                        else if(selectItem.substr(0,2) == 30){
+                            if(value.addr_no.toString().substr(0, 2)==30){
+                                return $('#select2').append('<option value="' + value.addr_no + '">' + value.addr_name + '</option>')
+                            }
+                        }
+                    })
+
+                }
+            });
+            $('#select2').empty();
+        })
+    </script>
+    <script>
+        $(document).ready(function(){
+            var addr1 = getCookie("addr1")
+            var addr2 = getCookie("addr2")
+
+            $('#select1').val(addr1);
+            $('#select2').val(addr2);
+
+            $("#submit_Button").click(function () {
+                setCookie("addr1", $('#select1').val(), 7);
+                setCookie("addr2", $('#select2').val(), 7);
+            })
+
+            // 쿠키저장
+            function setCookie(cookieName, value, exdays) {
+                var exdate = new Date();
+                exdate.setDate(exdate.getDate() + exdays);
+                var cookieValue = escape(value) + ((exdays == null) ? "" : "; expires=" + exdate.toGMTString());
+                document.cookie = cookieName + "=" + cookieValue;
+
+            }
+
+            function getCookie(cookieName) {
+                cookieName = cookieName + '=';
+                var cookieData = document.cookie;
+                var start = cookieData.indexOf(cookieName);
+                var cookieValue = '';
+                if (start != -1) {
+                    start += cookieName.length;
+                    var end = cookieData.indexOf(';', start);
+                    if (end == -1) end = cookieData.length;
+                    cookieValue = cookieData.substring(start, end);
+                }
+                return unescape(cookieValue);
+            }
+        })
+                    
+    </script>
+
+</body>
+</html>
