@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        window.onload = function () {
+            // document.getElementById('userVisit').innerHTML = new Date();
+            //Tue Apr 27 2021 14:01:50 GMT+0900 (대한민국 표준시)
+            
+            // document.getElementById('userVisit').innerHTML = new Date().toLocaleString().slice(0,20);
+            //2021. 4. 27. 오후 1:58
+
+            document.getElementById('userVisit').innerHTML = new Date().toLocaleString().slice(0,11)+' '+new Date().toTimeString().slice(0, 5);
+            //2021. 4. 27
+
+            // document.getElementById('userVisit').innerHTML = new Date().toString().slice(0, 20);
+            //Tue Apr 27 2021 13:5
+
+
+
+            //    var time = document.createElement('input');
+            //     time.type = 'hidden';
+            //     time.name = 'time';
+            //     time.value = document.getElementById('userVisit').value;
+            //     document.form1.appendChild(time);
+        }
+   </script>
+</head>
+<body>
+    <!-- <input type="text" id="userVisit" name="tt" disabled> -->
+    <div id="userVisit"></div>
+</body>
+</html>

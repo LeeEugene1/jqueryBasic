@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>로컬스토리지(로그인내용저장)</title>
+    <script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
+    <script>
+        localStorage.setItem('key', 1000)
+        // console.log(localStorage.getItem('key'))
+        // 크롬개발자모드-application-localStorage에서도 확인가능
+
+        window.onload = function () { 
+            var here = document.querySelector('#here')
+            here.innerHTML = '<p>'+localStorage.getItem('key')+'</p>'
+            // here.append(localStorage.getItem('key'))
+
+            // var s1 = document.querySelector('#1')
+            // s1.appendChild('<option>'+localStorage.getItem('key')+'</option>');
+        }
+    </script>
+    <script>
+        $(document).ready(function(){
+            // $('#s1').append("<option>"+localStorage.getItem('key')+"</option>")
+            // $('#btn').click(function(){
+            //             localStorage.setItem('key2', setS1)
+            //         })
+            // $('#s1').append("<option selected>" + localStorage.getItem('key2') + "</option>")
+            $('#edit').change(function(){
+                localStorage.setItem('optionData', this.value);
+            })
+            if(localStorage.getItem('optionData')){
+                // alert(localStorage.getItem('optionData'))
+                $('#edit').val(localStorage.getItem('optionData'))
+            }
+        })
+    </script>
+</head>
+<body>
+    <div id="here"></div>  
+    <!-- <input type="text" id="here">  -->
+    <select name="" id="edit">
+        <option value="10" id="1">10</option>
+        <option value="20" id="2">20</option>
+        <option value="30" id="2">30</option>
+    </select>
+    <button id="btn">option select</button>
+</body>
+</html>

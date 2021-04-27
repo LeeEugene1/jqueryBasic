@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
+
+    <title>Document</title>
+
+</head>
+<body>
+    <select name="" id="id">
+        <option value="초콜렛">초콜렛</option>
+        <option value="바나나">바나나</option>
+        <option value="헤이즐넛">헤이즐넛</option>
+    </select>
+    <div id="test">초콜렛</div>
+    <script>
+        //option value값이 바나나
+        // $("#id").val("바나나").prop("selected", true);
+        // alert($("#id").val("바나나"));
+
+
+        //option 순서로 선택하기 첫번째는 0
+        // $('#id option:eq(2)').prop("selected", true);
+        // $('#test').html('hi')
+        
+        // div에뿌리기
+        // $('#test').html($("#id").val())
+
+        //옵션바뀌는대로 div에 바꿔주기
+        $("#id").change(function(){
+            reload();
+        })
+
+        function reload(){
+            return $('#test').html($('#id').val())
+        }
+
+        //초기값 초콜렛설정해주기
+        // $("#id").change(function(){
+        //     reload(1);
+        // })
+
+        // function reload(first_value){
+        //     if($('#id').val() == null){
+        //         return $('#test').html('hi')
+        //     }else if(first_value == 1){
+        //         return $('#test').html($('#id').val()+'dfdf')
+
+        //     }
+        // }
+
+    </script>
+</body>
+</html>

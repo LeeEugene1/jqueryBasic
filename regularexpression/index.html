@@ -18,7 +18,8 @@
             var box = $('#box').val();
             var mob = $('#mobile').val()
             // var mobRex = /[~!@#$%^&*()_+|<>?:{}]/;
-            var mobRex = /^[0-9]{11}$/;
+            var mobRex = /^[0-9]{10,11}$/;
+            // var specialRex = /[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\"]/;
 
             // trim은 공백제거해줌
             if($.trim(box) == ''){
@@ -39,6 +40,15 @@
             }
             // 번호는 11자, 특수문자x, 숫자만
             // test는 Boolean을 리턴한다.
+
+            // if(specialRex.test($.trim(mob))){
+            //     // 특수문자 제거후 리턴
+            //     return $.trim(mob).replace(specialRex, "");
+            //     alert($.trim(mob).replace(specialRex, ""))
+            // }else{
+            //     //특수문자가 없으므로 본래 문자 리턴
+            //     return $.trim(mob)
+            // }
 
             if($('#ch1').prop('checked') == '' || $('#ch2').prop('checked') == ''){
                 alert('체크박스 모두 표시')
@@ -62,7 +72,9 @@
         이름
         <input type="text" id="box">
         번호
-        <input type="number" id="mobile">
+        <!-- <input type="number" id="mobile"> -->
+        <input type="text" id="mobile">
+
         체크박스
         <label for="">
             <input type="checkbox" name="color" value="blue" id="ch1">
@@ -72,8 +84,9 @@
         </label>
         <!-- name은 전달할값 value는 전달될 값 checked는 알지 -->
         
-        <input type="button"  id="btnclick" value="버튼">
-        <!-- <button>태그쓰지말것</button> 이전값 초기화되버림 -->
+        <!-- <input type="button"  id="btnclick" value="버튼"> -->
+        <button type="submit" id="btnclick" >버튼</button>
+        <!-- <button type="submit"안하면 이전값 초기화되버림 -->
     </form>
 </body>
 </html>
