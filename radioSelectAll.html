@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+
+</head>
+<body>
+    <div>
+        <input type="checkbox" id="selectAll" name="selectAll" value="selectAll" class="">
+        <label for="selectAll">all</label>
+    </div>
+    <div>
+        <input type="checkbox" id="1" name="radiobtn1" value="radiobtn1" class="">
+        <label for="1">orange</label>
+    </div>
+    <div>
+        <input type="checkbox" id="2" name="radiobtn2" value="radiobtn2" class="">
+        <label for="2">kiwi</label>
+    </div>
+    <script>
+        onload = function(){
+            $('#selectAll').click(function(){
+            clickEvent();
+            // $('#2').attr('checked',true)
+            //     $("#1").toggle('checked',true)
+            //     $('#2').toggle('checked',true)
+        });
+        
+        // 한번만됨ㅠㅠ
+        // function clickEvent(){
+        //     // alert('hi')
+        //     if($("#selectAll").is(':checked')) {
+        //         $("#1").attr('checked',true)
+        //         $("#2").attr('checked',true)
+        //     }else{
+        //         $("#1").prop('checked',false)
+        //         $("#2").prop('checked',false)
+        //     }
+        // }
+
+        https://stackoverflow.com/questions/9669005/jquery-toggle-select-all-checkboxes/9669062
+        }
+        
+    </script>
+
+</body>
+</html>
