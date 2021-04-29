@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <label for="userAddress">주소(시군구)</label>
+        <select name="" id="addr_no1">
+        </select>
+        <select name="addr_no" id="addr_no2">
+        </select>
+    <button id="submit_btn">저장</button>
+    <script>
+        window.onload = function(){
+            $('#submit_btn').click(function(){
+                localStorage.setItem('addr_no', $('#addr_no2').val())
+            })
+
+            var local_addr_no = localStorage.getItem('addr_no');
+
+            var selectBox1 = $.ajax({
+                url: '../addr1.json',
+                dataType:'json',
+                type:'get',
+                cache:false,
+                success: function(data){
+                    $('#addr_no1').empty();
+                    $(data.addr1).each(function(index, value){
+                        return $('#addr_no1').append('<option value=' + value.addr_no +'>' + value.addr_name +'</option>')
+                    });
+                    if (local_addr_no != null) {
+                        addr_no1 = local_addr_no.substr(0, 2) + '000' //시군코드
+                        $('#addr_no1').val(addr_no1).prop("selected", true);
+                        reload_addr_no2();
+                    }else{
+                        reload_addr_no2(1);
+                    }
+                }
+                });
+
+            function reload_addr_no2(test){
+                addr_no = $("#addr_no1").val();
+                var selectBox2 = $.ajax({
+                    url: '../addr2.json',
+                    dataType: 'json',
+                    type: 'get',
+                    cache: false,
+                    success: function (data) {
+                        $('#addr_no2').empty();
+                        $(data.addr2).each(function (index, value) {
+                            return $('#addr_no2').append('<option value=' + value.addr_no + '>' + value.addr_name + '</option>')
+                        });
+                        if(local_addr_no != null){
+                            $('#addr_no2').val(local_addr_no).prop('selected', true);
+                        }
+                        if(test == 1){
+                            $('#addr_no2 option:eq(0)').prop('selected', true);
+                        }
+                       
+                    }
+                })
+            }
+            
+
+            $('#addr_no1').change(function(){
+                reload_addr_no2(1);
+            })
+
+        }
+    </script>
+</body>
+</html>
