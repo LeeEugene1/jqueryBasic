@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <ul>
+        <li>HTML</li>
+        <li>CSS</li>
+        <li id="active" class="marked current">Javascript</li>
+        <!-- <input type="button" value="darkbtn" id="darkbtn"> -->
+    </ul>
+    <script>
+        var a = document.querySelector('#active')
+        console.log(a.classList[0])
+        console.log(a.classList[1])
+        for(var i = 0; i<a.classList.length; i++){
+            console.log(a.classList[i])
+        }
+        // < li id = "active" class="marked current important" > Javascript</li >
+        // console.log(a.classList.add('important'))
+        // < li id = "active" class="marked current" > Javascript</li >
+        // console.log(a.classList.remove('important'))
+        //있으면 없애고 없으면 만들고
+        console.log(a.classList.toggle('important'))
+    </script>
+</body>
+</html>

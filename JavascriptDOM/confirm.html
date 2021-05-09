@@ -8,7 +8,15 @@
 </head>
 <body>
     <input type="button" value="confirm" onclick="func_confirm()"/>
+    <input type="button" value="prompt" onclick="func_prompt()">
     <script>
+        function func_prompt(){
+            if(prompt("이름?") === "yujin"){
+                alert('welcome')
+            }else{
+                alert('fail')
+            }
+        }
         function func_confirm(){
             if(confirm('ok?')){
                 alert('ok')

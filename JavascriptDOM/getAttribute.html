@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <a href="https://opentutorials.org/" id="target" title=""></a>
+    <script>
+        t = document.getElementById('target')
+        console.log(t.getAttribute('href'));
+        console.log(t.getAttribute('id'))
+        console.log(t.setAttribute('href', 'www.naver.com'))
+        console.log(t.setAttribute('title', 'tutorials'))
+        // console.log(t.removeAttribute('title'))
+
+        //속성이있는지없는지?
+        // console.log(t.hasAttribute('title'))//false
+    </script>
+</body>
+</html>
