@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>자바스크립트를 통해 html을 제어해보자(inline)</title>
+    <style>
+        #selected{
+            color:red;
+        }
+        .dark{
+            background-color: black;
+            color:white
+        }
+        .dark #selected{
+            color:yellow
+        }
+    </style>
+    <!-- <script>
+        function darkBackground(){
+            document.body.classList.toggle("dark")
+        }
+    </script> -->
+</head>
+<!-- <body class="dark"> -->
+<body class="">
+    <ul>
+        <li>HTML</li>
+        <li>CSS</li>
+        <li id="selected">Javascript</li>
+        <!-- <input type="button" value="어두운배경버튼" onclick="darkBackground()"> -->
+        <input type="button" value="darkbtn" onclick="document.body.classList.toggle('dark');">
+    </ul>
+</body>
+</html>
