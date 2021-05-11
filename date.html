@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+<body onload="display_c()">
+    <!-- 원하는 포맷으로 출력하기 2021-04-26 23:00:00 -->
+    <input type="text" id="userVisit" disabled>
+        <script> 
+            function display_c(){
+                var date_format
+                var date = new Date()
+                date_format = date.getFullYear().toString() + '-' + pad2(date.getMonth() + 1) + '-' + pad2(date.getDate()) + ' ' + pad2(date.getHours()) + ':' + pad2(date.getMinutes()) + ':' + pad2(date.getSeconds())
+                document.getElementById('userVisit').value = date_format
+                function pad2(n) {
+                    return n < 10 ? '0' + n : n
+                }
+                var refresh = 1000
+                setTimeout('display_c()', refresh)
+            }
+        </script>
+</body>
+</html>
