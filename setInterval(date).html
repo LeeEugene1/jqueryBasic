@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
+    <title>Document</title>
+</head>
+<body>
+    <!-- 원하는 포맷으로 출력하기 2021-04-26 23:00:00 -->
+    <input type="text" id="userVisit" disabled>
+    <script> 
+        // 1초마다 갱신
+        setInterval(function(){
+            var date_format
+            var date = new Date()
+            date_format = date.getFullYear().toString() + '-' + pad2(date.getMonth() + 1) + '-' + pad2(date.getDate()) + ' ' + pad2(date.getHours()) + ':' + pad2(date.getMinutes()) + ':' + pad2(date.getSeconds())
+            document.getElementById('userVisit').value = date_format
+            function pad2(n) {
+                return n < 10 ? '0' + n : n
+            }
+        },1000)
+
+    </script>
+</body>
+</html>
