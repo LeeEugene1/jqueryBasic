@@ -15,12 +15,17 @@
         setInterval(function(){
             var date_format
             var date = new Date()
-            date_format = date.getFullYear().toString() + '-' + pad2(date.getMonth() + 1) + '-' + pad2(date.getDate()) + ' ' + pad2(date.getHours()) + ':' + pad2(date.getMinutes()) + ':' + pad2(date.getSeconds())
+            // date_format = date.getFullYear().toString() + '-' + pad2(date.getMonth() + 1) + '-' + pad2(date.getDate()) + ' ' + pad2(date.getHours()) + ':' + pad2(date.getMinutes()) + ':' + pad2(date.getSeconds())
+            date.setHours(date.getHours() + 9) //영국시간을 한국시간시차에 맞추기위해 +9시간더함
+            date_format = date.toISOString().replace('T', ' ').substring(0, 19)
             document.getElementById('userVisit').value = date_format
-            function pad2(n) {
-                return n < 10 ? '0' + n : n
-            }
+            // function pad2(n) {
+            //     return n < 10 ? '0' + n : n
+            // }
         },1000)
+
+            
+
 
     </script>
 </body>
